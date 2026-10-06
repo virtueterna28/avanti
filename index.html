@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boarschar Avanti Veterna</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandBlue: '#233686',
+                        brandBlueHover: '#1c2b6d',
+                        brandBlueLight: '#3b52b0',
+                        darkBg: '#0a0a0c',
+                        darkCard: '#13141a',
+                        darkBorder: '#222430',
+                        accentGold: '#f59e0b',
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .slider-img {
+            transition: transform 6s ease-out, opacity 0.8s ease-in-out;
+        }
+        .active-slide {
+            opacity: 1;
+            transform: scale(1.05);
+        }
+        .inactive-slide {
+            opacity: 0;
+            transform: scale(1.0);
+        }
+        .glass-card {
+            background: rgba(19, 20, 26, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #ffffff 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="bg-darkBg text-gray-100 font-sans antialiased overflow-x-hidden">
+
+    <header class="fixed top-0 left-0 right-0 z-50 bg-[#233686] shadow-xl border-b border-blue-900/40 transition-all duration-300" id="mainHeader">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo & Brand Name -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white transition-all shadow-md bg-white">
+                    <img src="https://github.com/virtueterna28/avanti/blob/main/Avanti.jpg?raw=true" alt="Boarschar Avanti Logo" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='https://placehold.co/100x100/233686/ffffff?text=BA';">
+                </div>
+                <div>
+                    <span class="font-heading font-extrabold text-lg sm:text-xl tracking-wider text-white block leading-tight">BOARSCHAR AVANTI</span>
+                    <span class="text-xs text-blue-200 tracking-widest font-medium uppercase">SMA Ar-Rohmah Putra - Veterna</span>
+                </div>
+            </a>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-sm">
+                <a href="#home" class="text-white hover:text-blue-200 transition-colors">Beranda</a>
+                <a href="#tentang" class="text-white/80 hover:text-white transition-colors">Tentang Kami</a>
+                <a href="#struktur" class="text-white/80 hover:text-white transition-colors">Kader Mujahid</a>
+                <a href="#chant" class="text-white/80 hover:text-white transition-colors">Chant & Galeri</a>
+            </nav>
+
+            <!-- CTA Button Desktop -->
+            <div class="hidden md:block">
+                <a href="#kontak" class="inline-flex items-center gap-2 bg-white text-[#233686] font-semibold px-5 py-2.5 rounded-full hover:bg-blue-50 transition-all shadow-lg hover:shadow-blue-500/20 active:scale-95">
+                    <i data-lucide="phone-call" class="w-4 h-4"></i>
+                    <span>Hubungi Kami</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Toggle Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle Menu">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Navigation Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-[#1a2968] border-b border-blue-800/50 px-4 pt-3 pb-6 space-y-3">
+            <a href="#home" class="block px-3 py-2 rounded-md text-white font-medium hover:bg-white/10">Beranda</a>
+            <a href="#tentang" class="block px-3 py-2 rounded-md text-white/90 hover:bg-white/10">Tentang Kami</a>
+            <a href="#struktur" class="block px-3 py-2 rounded-md text-white/90 hover:bg-white/10">Kader Mujahid</a>
+            <a href="#chant" class="block px-3 py-2 rounded-md text-white/90 hover:bg-white/10">Chant & Galeri</a>
+            <a href="#kontak" class="block px-3 py-2.5 rounded-full bg-white text-[#233686] text-center font-semibold mt-4">Hubungi Kami</a>
+        </div>
+    </header>
+
+    <section id="home" class="relative min-h-screen pt-20 flex items-center justify-center overflow-hidden bg-black">
+        <!-- Slider Container -->
+        <div id="sliderContainer" class="absolute inset-0 z-0">
+            <!-- Slide 1 -->
+            <div class="slide absolute inset-0 slider-img active-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2650.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 1" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+1';">
+            </div>
+            <!-- Slide 2 -->
+            <div class="slide absolute inset-0 slider-img inactive-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2633.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 2" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+2';">
+            </div>
+            <!-- Slide 3 -->
+            <div class="slide absolute inset-0 slider-img inactive-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2470.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 3" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+3';">
+            </div>
+            <!-- Slide 4 -->
+            <div class="slide absolute inset-0 slider-img inactive-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2460.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 4" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+4';">
+            </div>
+            <!-- Slide 5 -->
+            <div class="slide absolute inset-0 slider-img inactive-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2458.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 5" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+5';">
+            </div>
+            <!-- Slide 6 -->
+            <div class="slide absolute inset-0 slider-img inactive-slide">
+                <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2426.jpg?raw=true" class="w-full h-full object-cover" alt="Supporter Image 6" onerror="this.onerror=null; this.src='https://placehold.co/1920x1080/121212/ffffff?text=Boarschar+Avanti+6';">
+            </div>
+        </div>
+
+        <!-- Overlay Gradients -->
+        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-black/60 to-black/40 z-10"></div>
+
+        <!-- Content Overlay -->
+        <div class="relative z-20 max-w-5xl mx-auto px-4 text-center mt-12">
+            <div class="inline-flex items-center gap-2 bg-brandBlue/80 backdrop-blur-md text-blue-100 px-4 py-1.5 rounded-full border border-blue-400/30 mb-6 text-xs sm:text-sm font-semibold tracking-wide uppercase">
+                <i data-lucide="shield-check" class="w-4 h-4 text-amber-400"></i>
+                Organisasi Suporter Angkatan Veterna
+            </div>
+            <h1 class="font-heading font-black text-3xl sm:text-5xl md:text-6xl lg:text-7xl uppercase tracking-tight text-white mb-6 leading-none drop-shadow-2xl">
+                BOARSCHAR AVANTI
+            </h1>
+            <p class="text-lg sm:text-2xl text-gray-200 font-semibold tracking-wider max-w-3xl mx-auto mb-10 drop-shadow uppercase text-gradient">
+                SATU JIWA, SATU KEBANGGAAN AR-ROHMAH PUTRA
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="#tentang" class="w-full sm:w-auto bg-brandBlue hover:bg-brandBlueLight text-white font-bold px-8 py-4 rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-brandBlue/50 flex items-center justify-center gap-2">
+                    <span>Jelajahi Profil</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                </a>
+                <a href="#kontak" class="w-full sm:w-auto bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 font-semibold px-8 py-4 rounded-full transition-all duration-300 flex items-center justify-center gap-2">
+                    <i data-lucide="flag" class="w-5 h-5 text-amber-400"></i>
+                    <span>Bergabung Bersama Kami</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button id="prevSlideBtn" class="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-brandBlue transition-all border border-white/20 focus:outline-none" aria-label="Previous Slide">
+            <i data-lucide="chevron-left" class="w-6 h-6"></i>
+        </button>
+        <button id="nextSlideBtn" class="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-black/40 text-white hover:bg-brandBlue transition-all border border-white/20 focus:outline-none" aria-label="Next Slide">
+            <i data-lucide="chevron-right" class="w-6 h-6"></i>
+        </button>
+
+        <!-- Slider Dots -->
+        <div id="dotsContainer" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex items-center space-x-2">
+            <!-- Dots generated by JS -->
+        </div>
+    </section>
+
+    <section id="tentang" class="py-24 bg-darkBg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="space-y-6">
+                    <div class="inline-flex items-center gap-2 text-brandBlueLight font-bold uppercase tracking-wider text-xs sm:text-sm">
+                        <span class="w-8 h-0.5 bg-brandBlueLight"></span>
+                        Tentang Kami
+                    </div>
+                    <h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight">
+                        Wadah Kesetiaan & <span class="text-brandBlueLight">Solidaritas Santri</span>
+                    </h2>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed text-justify font-light">
+                        <strong class="text-white font-semibold">Boarschar Avanti</strong> adalah organisasi suporter SMA AR ROHMAH PUTRA. Boarschar Avanti dibentuk sebagai wadah bagi para santri untuk mendukung sekolah kebanggaan di seluruh ajang kompetisi baik itu lomba futsal, basket, voli, dan cabang olahraga/seni lainnya.
+                    </p>
+                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed text-justify font-light">
+                        Organisasi ini juga menjadi tempat untuk meningkatkan solidaritas seluruh santri dan tempat untuk mempererat tali silaturahmi. Boarschar Avanti merupakan bukti kesetiaan para santri dalam mendukung Ar-Rohmah.
+                    </p>
+
+                    <!-- Feature Highlights Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
+                        <div class="glass-card p-4 rounded-xl border border-white/10 hover:border-brandBlue/50 transition-all">
+                            <i data-lucide="users" class="w-8 h-8 text-brandBlueLight mb-2"></i>
+                            <h3 class="text-white font-bold text-sm">Solidaritas Tinggi</h3>
+                            <p class="text-xs text-gray-400 mt-1">Mempererat ukhuwah & kebersamaan antar santri.</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl border border-white/10 hover:border-brandBlue/50 transition-all">
+                            <i data-lucide="flame" class="w-8 h-8 text-amber-500 mb-2"></i>
+                            <h3 class="text-white font-bold text-sm">Semangat Santri</h3>
+                            <p class="text-xs text-gray-400 mt-1">Dukungan sportif dengan adab Islami di tribunal.</p>
+                        </div>
+                        <div class="glass-card p-4 rounded-xl border border-white/10 hover:border-brandBlue/50 transition-all">
+                            <i data-lucide="heart-handshake" class="w-8 h-8 text-blue-400 mb-2"></i>
+                            <h3 class="text-white font-bold text-sm">Loyalis Tanpa Batas</h3>
+                            <p class="text-xs text-gray-400 mt-1">Selalu setia mengawal perjuangan almamater.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Image Showcase -->
+                <div class="relative">
+                    <div class="absolute -inset-2 bg-gradient-to-r from-brandBlue to-blue-600 rounded-2xl blur-lg opacity-30"></div>
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl group">
+                        <img src="https://github.com/virtueterna28/avanti/blob/main/foto/IMG_2633.jpg?raw=true" alt="Boarschar Avanti Action" class="w-full h-[450px] object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null; this.src='https://placehold.co/800x600/1e293b/ffffff?text=Boarschar+Avanti';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkBg via-transparent to-transparent"></div>
+                        <div class="absolute bottom-6 left-6 right-6 p-4 glass-card rounded-xl border border-white/10">
+                            <div class="flex items-center gap-3">
+                                <div class="p-3 bg-brandBlue rounded-lg text-white">
+                                    <i data-lucide="trophy" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Kebanggaan Ar-Rohmah</h4>
+                                    <p class="text-xs text-gray-300">Menjadi pemain ke-12 di setiap laga bertanding.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="struktur" class="py-24 bg-[#0d0e12] relative border-t border-darkBorder">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <div class="inline-flex items-center gap-2 text-brandBlueLight font-bold uppercase tracking-wider text-xs sm:text-sm mb-3">
+                    <i data-lucide="shield" class="w-4 h-4"></i>
+                    Struktur Keanggotaan
+                </div>
+                <h2 class="font-heading text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                    Pengurus Avanti <span class="text-brandBlueLight">Veterna</span>
+                </h2>
+                <p class="text-gray-400 mt-4 text-sm sm:text-base">
+                    Para penggerak, konseptor, dan pemimpin sorakan Boarschar Avanti yang berkomitmen menjaga kebanggaan SMA Ar-Rohmah Putra.
+                </p>
+            </div>
+
+            <!-- Management Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+
+                <!-- Card Template Component Item 1 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" alt="Abdul Aziz Abiyyu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Abdul+Aziz';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Ketua Umum
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Abdul Aziz Abiyyu</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Umum Boarschar Avanti</p>
+                        <a href="https://www.instagram.com/abdllazz__/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@abdllazz__</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 2 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" alt="Ahmad Dzakwan Alify" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Ahmad+Dzakwan';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Koordinator
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Ahmad Dzakwan Alify</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Koordinator</p>
+                        <a href="https://www.instagram.com/alifyzyyin_/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@alifyzyyin_</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 3 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/GPH/blob/main/foto/IMG_9243.jpg?raw=true" alt="Ilham Bintang yuar" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Ilham+Bintang';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Sekretaris
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Ilham Bintang Yuar</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Sekretaris Organisasi</p>
+                        <a href="https://www.instagram.com/bintangyuarrrr/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@bintangyuarrrr</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 4 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/GPH/blob/main/foto/DSC04249.jpg?raw=true" alt="Liwa El Nashr Mubarok" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Liwa+El+Nashr';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Bendahara
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Liwa El Nashr Mubarok</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Bendahara Organisasi</p>
+                        <a href="https://www.instagram.com/liwaael_/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@liwaael_</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 5 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" alt="Arsyad Fajri Risam R." class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Arsyad+Fajri';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Kadiv Korlap
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Arsyad Fajri Risam R.</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Divisi Korlap</p>
+                        <a href="https://www.instagram.com/arsyadd.f/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@arsyadd.f</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 6 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/GPH/blob/main/foto/IMG_9190.jpg?raw=true" alt="Daris Irsyad" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Daris+Irsyad';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Kadiv Perkusi
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Daris Irsyad</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Divisi Perkusi</p>
+                        <a href="https://www.instagram.com/darsirsyd_/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@darsirsyd_</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 7 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/GPH/blob/main/foto/IMG_9261.jpg?raw=true" alt="M. Abiyyu Dhafran" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=M.+Abiyyu+Dhafran';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Kadiv Kreatif
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">M. Abiyyu Dhafran</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Divisi Kreatif</p>
+                        <a href="https://www.instagram.com/biyu.dhfrn/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@biyu.dhfrn</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 8 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05336.jpg?raw=true" alt="M. Denzel Abrisam" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=M.+Denzel+Abrisam';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Kadiv Konseptor
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">M. Denzel Abrisam</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Divisi Konseptor</p>
+                        <a href="https://www.instagram.com/dennnnz._/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@dennnnz._</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 9 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" alt="Hamzah Fauzan Aziz" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Hamzah+Fauzan';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-brandBlue text-white text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Giant Flag
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Hamzah Fauzan Aziz</h3>
+                        <p class="text-xs text-blue-400 font-medium mt-0.5">Ketua Divisi Giant Flag</p>
+                        <a href="https://www.instagram.com/hamzahfaziz/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@hamzahfaziz</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 10 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/sarpala/blob/main/gapapa.jpg?raw=true" alt="Abdul Aziz Abiyyu" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=Abdul+Aziz';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Capo 1
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">Abdul Aziz Abiyyu</h3>
+                        <p class="text-xs text-amber-400 font-medium mt-0.5">Leader Chant / Capo Utama</p>
+                        <a href="https://www.instagram.com/abdllazz__/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@abdllazz__</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Item 11 -->
+                <div class="glass-card rounded-2xl overflow-hidden border border-white/10 hover:border-brandBlueLight/60 transition-all duration-300 group hover:-translate-y-2 flex flex-col justify-between">
+                    <div class="relative h-72 overflow-hidden bg-gray-900">
+                        <img src="https://github.com/virtueterna28/kopastra/blob/main/mentahan%20foto/DSC05199.jpg?raw=true" alt="M Dhaif Khusyu' Nur Hakim" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.onerror=null; this.src='https://placehold.co/400x500/1f2937/ffffff?text=M+Dhaif+Khusyu';">
+                        <div class="absolute inset-0 bg-gradient-to-t from-darkCard via-transparent to-transparent opacity-90"></div>
+                        <span class="absolute top-3 right-3 bg-amber-500 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                            Capo 2
+                        </span>
+                    </div>
+                    <div class="p-5 text-center relative z-10 -mt-6">
+                        <h3 class="text-lg font-bold text-white group-hover:text-blue-300 transition-colors">M Dhaif Khusyu' N. H.</h3>
+                        <p class="text-xs text-amber-400 font-medium mt-0.5">Leader Chant / Capo 2</p>
+                        <a href="https://www.instagram.com/dhaiif._/" target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-xs font-semibold text-gray-300 hover:text-pink-400 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-full border border-white/10 transition-all w-full justify-center">
+                            <i data-lucide="instagram" class="w-4 h-4 text-pink-500"></i>
+                            <span>@dhaiif._</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="chant" class="py-20 bg-darkBg border-t border-darkBorder relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-brandBlueLight font-bold text-xs uppercase tracking-widest">Semangat Tribunal</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Lantunan Chant Kebanggaan</h2>
+                <p class="text-gray-400 text-sm mt-2">Dukungan tanpa henti menggemas di setiap sudut tribun pertandingan.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Chant Card 1 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brandBlue/20 rounded-bl-full -z-10 transition-all group-hover:scale-110"></div>
+                    <i data-lucide="mic" class="w-8 h-8 text-amber-400 mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Semangat Santri Ar-Rohmah</h3>
+                    <div class="text-gray-300 text-sm leading-relaxed space-y-2 font-mono bg-black/40 p-4 rounded-xl border border-white/5">
+                        <p>Di sini kami berdiri...</p>
+                        <p>Mendukung sekolah tercinta...</p>
+                        <p class="text-brandBlueLight font-bold">SMA Ar-Rohmah Putra kebanggaanku!</p>
+                        <p>Tak kan pernah ragu, kami terus bernyanyi!</p>
+                    </div>
+                </div>
+
+                <!-- Chant Card 2 -->
+                <div class="glass-card p-6 sm:p-8 rounded-2xl border border-white/10 relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-brandBlue/20 rounded-bl-full -z-10 transition-all group-hover:scale-110"></div>
+                    <i data-lucide="volume-2" class="w-8 h-8 text-brandBlueLight mb-4"></i>
+                    <h3 class="text-xl font-bold text-white mb-2">Avanti Bertanding</h3>
+                    <div class="text-gray-300 text-sm leading-relaxed space-y-2 font-mono bg-black/40 p-4 rounded-xl border border-white/5">
+                        <p>Langkah mantap menuju kejayaan...</p>
+                        <p>Boarschar Avanti bersatu di tribunal...</p>
+                        <p class="text-amber-400 font-bold">Kemenangan milik kita bersama!</p>
+                        <p>Ar-Rohmah! Ar-Rohmah! Juara!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="kontak" class="py-20 bg-[#0c0e14] border-t border-darkBorder relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 border border-white/10 relative overflow-hidden shadow-2xl">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-brandBlueLight font-bold text-xs uppercase tracking-wider mb-2">
+                            <i data-lucide="mail" class="w-4 h-4"></i>
+                            Hubungi Kami
+                        </div>
+                        <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">Ingin Bergabung atau Bekerjasama?</h2>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-6">
+                            Jadilah bagian dari gerakan semangat Boarschar Avanti. Hubungi pengurus kami untuk informasi keanggotaan, merchandise, atau kolaborasi acara.
+                        </p>
+                        <div class="space-y-3">
+                            <div class="flex items-center gap-3 text-sm text-gray-300">
+                                <div class="p-2 bg-brandBlue/30 rounded-lg text-blue-400">
+                                    <i data-lucide="map-pin" class="w-5 h-5"></i>
+                                </div>
+                                <span>SMA Ar-Rohmah Putra, Malang, Jawa Timur</span>
+                            </div>
+                            <div class="flex items-center gap-3 text-sm text-gray-300">
+                                <div class="p-2 bg-brandBlue/30 rounded-lg text-blue-400">
+                                    <i data-lucide="instagram" class="w-5 h-5"></i>
+                                </div>
+                                <span>Instagram: @abdllazz__</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Message Form -->
+                    <form id="contactForm" class="space-y-4 bg-black/40 p-6 rounded-2xl border border-white/5">
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Nama Lengkap / Santri</label>
+                            <input type="text" required placeholder="Masukkan nama Anda" class="w-full bg-darkBg border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brandBlueLight">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-gray-300 mb-1">Pesan / Pertanyaan</label>
+                            <textarea rows="3" required placeholder="Tuliskan pesan Anda untuk Boarschar Avanti..." class="w-full bg-darkBg border border-white/10 rounded-xl px-4 py-2.5 text-sm text-white focus:outline-none focus:border-brandBlueLight"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brandBlue hover:bg-brandBlueLight text-white font-bold py-3 rounded-xl transition-all shadow-lg flex items-center justify-center gap-2 text-sm">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            <span>Kirim Pesan WhatsApp</span>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black border-t border-darkBorder py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full overflow-hidden bg-white">
+                    <img src="https://github.com/virtueterna28/avanti/blob/main/Avanti.jpg?raw=true" alt="Logo Footer" class="w-full h-full object-cover">
+                </div>
+                <span class="text-sm font-bold text-white tracking-wide">BOARSCHAR AVANTI</span>
+            </div>
+            <p class="text-xs text-gray-500">
+                &copy; 2026 Boarschar Avanti - Organisasi Suporter SMA Ar-Rohmah Putra. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Image Slider Logic
+        const slides = document.querySelectorAll('.slide');
+        const dotsContainer = document.getElementById('dotsContainer');
+        const prevBtn = document.getElementById('prevSlideBtn');
+        const nextBtn = document.getElementById('nextSlideBtn');
+        
+        let currentSlide = 0;
+        let slideInterval;
+
+        // Generate Dots
+        slides.forEach((_, index) => {
+            const dot = document.createElement('button');
+            dot.className = `w-3 h-3 rounded-full transition-all duration-300 ${index === 0 ? 'bg-white w-8' : 'bg-white/40'}`;
+            dot.setAttribute('aria-label', `Go to slide ${index + 1}`);
+            dot.addEventListener('click', () => goToSlide(index));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = dotsContainer.querySelectorAll('button');
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('inactive-slide');
+                    slide.classList.add('active-slide');
+                } else {
+                    slide.classList.remove('active-slide');
+                    slide.classList.add('inactive-slide');
+                }
+            });
+
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.className = 'w-8 h-3 rounded-full bg-brandBlueLight transition-all duration-300';
+                } else {
+                    dot.className = 'w-3 h-3 rounded-full bg-white/40 hover:bg-white/70 transition-all duration-300';
+                }
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlides();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlides();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlides();
+            resetTimer();
+        }
+
+        function startTimer() {
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        function resetTimer() {
+            clearInterval(slideInterval);
+            startTimer();
+        }
+
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
+        });
+
+        // Contact Form Handling (Redirect to WA)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const inputs = this.querySelectorAll('input, textarea');
+            const name = inputs[0].value;
+            const message = inputs[1].value;
+            const targetPhone = "628123456789"; // Nomor pengurus
+            
+            const waUrl = `https://wa.me/${targetPhone}?text=Halo%20Boarschar%20Avanti,%20Saya%20${encodeURIComponent(name)}.%20${encodeURIComponent(message)}`;
+            window.open(waUrl, '_blank');
+        });
+
+        // Start slider on load
+        window.onload = function() {
+            startTimer();
+        };
+    </script>
+</body>
+</html>
